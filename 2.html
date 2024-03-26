@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Number to Clock</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .container {
+        margin-top: 50px;
+      }
+      input[type="number"] {
+        width: 50px;
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      #clock {
+        margin-top: 20px;
+        font-family: monospace;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <label for="numberInput">Enter a number (1 - 15):</label>
+      <input type="number" id="numberInput" min="1" max="15" />
+      <button onclick="generateClock()">Generate</button>
+      <div id="clock"></div>
+    </div>
+
+    <script>
+      function generateClock() {
+        var number = parseInt(document.getElementById("numberInput").value);
+        var clockDiv = document.getElementById("clock");
+        clockDiv.innerHTML = "";
+
+        if (number < 1 || number > 15 || isNaN(number)) {
+          alert("Please enter a number between 1 and 15.");
+          return;
+        }
+
+        var rows = "";
+        for (var i = number; i >= 1; i--) {
+          var asterisks = "*".repeat(i);
+          var spaces = " ".repeat(number - i);
+          rows += spaces + asterisks + "<br>";
+        }
+        for (var i = 1; i <= number; i++) {
+          var asterisks = "*".repeat(i);
+          var spaces = " ".repeat(number - i);
+          rows += spaces + asterisks + "<br>";
+        }
+
+        clockDiv.innerHTML = rows;
+      }
+    </script>
+  </body>
+</html>

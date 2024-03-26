@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Patterns</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    input[type="number"] {
+        width: 50px;
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .result {
+        margin-top: 20px;
+        text-align: left;
+    }
+    .result div {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <label for="numberInput">Enter a number (1 - 10):</label>
+    <input type="number" id="numberInput" min="1" max="10">
+    <button onclick="generatePatterns()">Generate</button>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+function generatePatterns() {
+    var number = parseInt(document.getElementById("numberInput").value);
+    var resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = '';
+
+    if (number < 1 || number > 10 || isNaN(number)) {
+        alert("Please enter a number between 1 and 10.");
+        return;
+    }
+
+    var pattern1 = '';
+    var pattern2 = '';
+    var pattern3 = '';
+    for (var i = 1; i <= number; i++) {
+        for (var j = 1; j <= number; j++) {
+            pattern1 += j + '\t';
+            pattern2 += (number - j + 1) + '\t';
+            pattern3 += (i % 2 === 0 ? (number - j + 1) : j) + '\t';
+        }
+        pattern1 += '<br>';
+        pattern2 += '<br>';
+        pattern3 += '<br>';
+    }
+
+    resultDiv.innerHTML += '<div>Pattern 1:<br>' + pattern1 + '</div>';
+    resultDiv.innerHTML += '<div>Pattern 2:<br>' + pattern2 + '</div>';
+    resultDiv.innerHTML += '<div>Pattern 3:<br>' + pattern3 + '</div>';
+}
+</script>
+</body>
+</html>

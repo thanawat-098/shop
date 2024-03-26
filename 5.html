@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Even and Odd Numbers</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    input[type="number"] {
+        width: 100px;
+        padding: 5px;
+        margin: 5px;
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .result {
+        margin-top: 20px;
+        text-align: left;
+    }
+    .result div {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <label for="numberInput">Enter a number (1 - 1000):</label>
+    <input type="number" id="numberInput" min="1" max="1000">
+    <button onclick="calculateEvenOdd()">Calculate</button>
+    <div class="result" id="evenNumbers"></div>
+    <div class="result" id="oddNumbers"></div>
+</div>
+
+<script>
+function calculateEvenOdd() {
+    var number = parseInt(document.getElementById("numberInput").value);
+    var evenNumbersDiv = document.getElementById("evenNumbers");
+    var oddNumbersDiv = document.getElementById("oddNumbers");
+    evenNumbersDiv.innerHTML = '';
+    oddNumbersDiv.innerHTML = '';
+
+    if (number < 1 || number > 1000 || isNaN(number)) {
+        alert("Please enter a number between 1 and 1000.");
+        return;
+    }
+
+    var evenNumbers = [];
+    var oddNumbers = [];
+    for (var i = 1; i <= number; i++) {
+        if (i % 2 === 0) {
+            evenNumbers.push(i);
+        } else {
+            oddNumbers.push(i);
+        }
+    }
+
+    evenNumbersDiv.innerHTML = '<div>มีเลขคู่ทั้งหมด ' + evenNumbers.length + ' จำนวน:<br>' + evenNumbers.join(' ') + '</div>';
+    oddNumbersDiv.innerHTML = '<div>มีเลขคี่ทั้งหมด ' + oddNumbers.length + ' จำนวน:<br>' + oddNumbers.join(' ') + '</div>';
+}
+</script>
+</body>
+</html>
